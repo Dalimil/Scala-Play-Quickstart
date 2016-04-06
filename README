@@ -36,14 +36,3 @@ Components
 
   An example of a component that starts when the application starts and stops
   when the application stops.
-
-Filters
-=======
-
-- Filters.scala:
-
-  Creates the list of HTTP filters used by your application.
-
-- ExampleFilter.scala
-
-  A simple filter that adds a header to every response.
