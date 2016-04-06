@@ -1,3 +1,3 @@
 #!/bin/sh
 
-./bin/activator run
+./activator run
