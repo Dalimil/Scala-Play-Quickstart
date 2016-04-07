@@ -1,5 +1,7 @@
 package controllers
 
+import play.api.data.Form
+import play.api.data.Forms._
 import play.api.mvc._
 
 class Application extends Controller {
@@ -35,4 +37,21 @@ class Application extends Controller {
     Ok("Hi: "+name)
   }
 
+  // Define a case class to store form data
+  case class UserData(name: String, age: Int, email: Option[String])
+  // Define the actual form that can map the data to our case class
+  val userForm: Form[UserData] = Form(
+    mapping(
+      "name" -> nonEmptyText, // or 'text'
+      "age" -> default(number(min = 0, max = 90), 42), // 42 when omitted
+      "email" -> optional(email) // may be be omitted
+    )(UserData.apply)(UserData.unapply) // to transform the data into an instance of our case class
+  )
+
+  def login() = Action { implicit request =>
+    val userData = userForm.bindFromRequest.get // UserData object - request is implicit
+    println(userData.name +" " + userData.age)
+    Redirect(routes.Application.showUser(userData.name))
+  }
 }
+
