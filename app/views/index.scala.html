@@ -1,7 +1,22 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
 @(message: String)
 
-@main("Welcome to Play", message)
+@main(title = "Index page") {
+    <div class="container">
+        <h1>Home page</h1>
+        <p> @message - My email is user@@example.com</p>
+        <button class="btn btn-primary">Click me!</button>
+    </div>
+    <!-- more examples: (but replace @@ by single (at) first)
+        Longer code: @@{val name = customer.firstName + customer.lastName; name}!
+        List:
+        <ul>
+            @@for(item <- items) {
+                @@if(item.isEmpty) {
+                    <li>It is empty</li>
+                } else {
+                    <li>@@item.name</li>
+                }
+            }
+        </ul>
+    -->
+}
