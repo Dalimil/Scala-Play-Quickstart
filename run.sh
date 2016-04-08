@@ -1,3 +1,3 @@
 #!/bin/sh
 
-./activator run
+./activator "~run 8080"

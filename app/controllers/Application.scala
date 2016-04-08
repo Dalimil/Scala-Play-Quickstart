@@ -2,6 +2,7 @@ package controllers
 
 import play.api.data.Form
 import play.api.data.Forms._
+import play.api.libs.json._
 import play.api.mvc._
 
 class Application extends Controller {
@@ -34,7 +35,10 @@ class Application extends Controller {
   }
 
   def showUser(name: String) = Action {
-    Ok("Hi: "+name)
+    val jsonVal: JsValue = Json.parse("""{"name": "Watership Down", "location": {"lat" : 51.23, "lng": -1.30}}""")
+    val minifiedString: String = Json.stringify(jsonVal)
+    val readableString: String = Json.prettyPrint(jsonVal)
+    Ok("Hi: "+name+" --- "+readableString)
   }
 
   // Define a case class to store form data
