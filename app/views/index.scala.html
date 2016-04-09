@@ -4,10 +4,15 @@
     <div class="container">
         <h1>Home page</h1>
         <p> @message - My email is user@@example.com</p>
-        <form method="POST" action="@routes.Application.login">
+        <form method="POST" action="@routes.Application.login" >
             <input name="name" type="text" placeholder="Username">
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        <!-- File Upload:
+            <form method="POST" enctype="multipart/form-data" >
+                <input type="file" name="profilePicture">
+            </form>
+        -->
     </div>
     <!-- more examples: (but replace @@ by single (at) first)
         Longer code: @@{val name = customer.firstName + customer.lastName; name}!

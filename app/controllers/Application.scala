@@ -57,5 +57,13 @@ class Application extends Controller {
     println(userData.name +" " + userData.age)
     Redirect(routes.Application.showUser(userData.name))
   }
+
+  def fileUpload = Action(parse.multipartFormData) { request =>
+      val picture = request.body.file("profilePicture").get
+      val filename = picture.filename
+      val contentType = picture.contentType
+      picture.ref.moveTo(new java.io.File(s"/tmp/pictures/$filename"))
+      Ok("File uploaded")
+  }
 }
 
