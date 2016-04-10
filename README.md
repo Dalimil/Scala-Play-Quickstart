@@ -2,6 +2,7 @@
 Basic Scala web application using the Play Framework
 
 ### TODO
+- [ ] Guice and dependency injections in general
 - [ ] Server-side requests and API connections
 - [ ] OAuth
 - [ ] Database and ORM

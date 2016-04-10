@@ -1,11 +1,12 @@
 package controllers
 
+import com.google.inject.Inject
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.libs.json._
 import play.api.mvc._
 
-class Application extends Controller {
+class Application @Inject() (sch: Scheduler) extends Controller {
 
   def index = Action { implicit request => // Make implicit to be able to use it later
     val myCookie = request.cookies.get("theme") // Option[Cookie]
@@ -20,6 +21,7 @@ class Application extends Controller {
   }
 
   def debug = Action { request =>
+    sch.schedule
     Ok("Got request: "+ request)
   }
 
@@ -65,5 +67,6 @@ class Application extends Controller {
       picture.ref.moveTo(new java.io.File(s"/tmp/pictures/$filename"))
       Ok("File uploaded")
   }
+
 }
 
