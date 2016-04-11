@@ -1,6 +1,7 @@
 package controllers
 
 import com.google.inject.Inject
+import play.api.Logger
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.libs.json._
@@ -22,6 +23,7 @@ class Application @Inject() (scheduler: Scheduler) extends Controller {
   }
 
   def debug = Action { request =>
+    Logger.debug("Simple usage of the default logger")
     scheduler.schedule
     Ok("Got request: "+ request)
   }
