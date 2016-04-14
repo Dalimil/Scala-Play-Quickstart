@@ -6,9 +6,9 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.libs.json._
 import play.api.mvc._
-import utils.Scheduler
+import utils.{HttpClient, Scheduler}
 
-class Application @Inject() (scheduler: Scheduler) extends Controller {
+class Application @Inject() (scheduler: Scheduler, httpClient: HttpClient) extends Controller {
 
   def index = Action { implicit request => // Make implicit to be able to use it later
     val myCookie = request.cookies.get("theme") // Option[Cookie]
@@ -25,7 +25,8 @@ class Application @Inject() (scheduler: Scheduler) extends Controller {
   def debug = Action { request =>
     Logger.debug("Simple usage of the default logger")
     scheduler.schedule
-    Ok("Got request: "+ request)
+    val res = httpClient.demo
+    Ok("Got request: "+ request +" --- \n " + res)
   }
 
   def test(id: Long) = TODO
