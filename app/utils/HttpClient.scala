@@ -9,8 +9,9 @@ import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
 
 /**
-  * Class for making HTTP requests
+  * Class for making HTTP requests (server-to-server)
   * https://playframework.com/documentation/2.5.x/ScalaWS
+  * Use it for OAuth2 - for OAuth1 see https://playframework.com/documentation/2.5.x/ScalaOAuth
   */
 
 @Singleton
