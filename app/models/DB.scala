@@ -24,6 +24,11 @@ object DbDemo {
     val firstAidKit = Db.query[Artist].whereEqual("name", "First Aid Kit").fetchOne()
     // Stream[Artist with Persisted]:
     val folkArtists = Db.query[Artist].whereEqual("genres.item.name", "Folk").fetch()
+
+    // Use a.copy() for 'Artist with Persisted' to 'Artist' conversion
+    // Use a.copy(sth1 = newVal, sth2 = newVal2) to create another instance with some changes
+    //  -> Db.save('Artist with Persisted' instance) performs an UPDATE instead of an INSERT operation
+    // Use Db.delete[Artist]('Artist with Persisted' instance here - maybe a result of previous queries)
   }
 }
 
