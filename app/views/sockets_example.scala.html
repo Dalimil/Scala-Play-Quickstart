@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSockets demo</title>
+    <script>
+        var ws = null;
+
+        function init(){
+                ws = new WebSocket("ws://"+window.location.host+"/ws");
+
+                ws.onopen = function(){
+                    console.log("connected");
+                };
+
+                ws.onmessage = function (evt){
+                    var received_msg = evt.data;
+                    console.log("Received: " + evt.data);
+                };
+
+                ws.onclose = function(){
+                    alert("Connection is closed...");
+                };
+        }
+
+        function send() {
+            if(ws != null){
+                ws.send("Hello server");
+            }
+        }
+    </script>
+</head>
+<body>
+    <script>
+    if (!("WebSocket" in window)) {
+        // The browser doesn't support WebSocket (HTML5)
+        alert("WebSocket NOT supported by your Browser!");
+    }
+    </script>
+
+    <h3>Hello Web Sockets in HTML5</h3>
+    <button onclick="init();">Connect</button>
+    <button onclick="send();">Send message to server</button>
+
+</body>
+</html>
